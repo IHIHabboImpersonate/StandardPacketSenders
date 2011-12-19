@@ -1,8 +1,8 @@
 ﻿namespace IHI.Server.Networking.Messages
 {
-    public class MConnectionClosed : OutgoingMessage
+    public class MSetupEncryption : OutgoingMessage
     {
-        public ConnectionClosedReason Reason
+        public bool UnknownA
         {
             get;
             set;
@@ -12,10 +12,9 @@
         {
             if (InternalOutgoingMessage.ID == 0)
             {
-                InternalOutgoingMessage.Initialize(287)
-                    .AppendInt32((int) Reason);
+                InternalOutgoingMessage.Initialize(277)
+                    .AppendBoolean(UnknownA);
             }
-
             target.SendMessage(InternalOutgoingMessage);
             return this;
         }

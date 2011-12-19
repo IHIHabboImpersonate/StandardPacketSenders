@@ -2,21 +2,10 @@
 {
     public class MSecretKey : OutgoingMessage
     {
-        private string _key;
-
-        public MSecretKey()
+        public string Key
         {
-        }
-
-        public MSecretKey(string key)
-        {
-            _key = key;
-        }
-
-        public MSecretKey SetKey(string key)
-        {
-            _key = key;
-            return this;
+            get;
+            set;
         }
 
         public override OutgoingMessage Send(IMessageable target)
@@ -24,7 +13,7 @@
             if (InternalOutgoingMessage.ID == 0)
             {
                 InternalOutgoingMessage.Initialize(1)
-                    .AppendString(_key);
+                    .AppendString(Key);
             }
             target.SendMessage(InternalOutgoingMessage);
             return this;

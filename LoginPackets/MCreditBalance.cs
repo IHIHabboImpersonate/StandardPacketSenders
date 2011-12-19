@@ -4,29 +4,19 @@ namespace IHI.Server.Networking.Messages
 {
     public class MCreditBalance : OutgoingMessage
     {
-        private int _balance;
+        public int Balance
+        {
+            get;
+            set;
+        }
 
         /// <summary>
-        /// Inform the client that it has been logged in.
+        /// Constructs a new instance of MCreditBalance and sets the balance to that of a given Habbo.
         /// </summary>
-        public MCreditBalance()
-        {
-        }
-
-        public MCreditBalance(int balance)
-        {
-            _balance = balance;
-        }
-
+        /// <param name="habbo"></param>
         public MCreditBalance(Habbo habbo)
         {
-            _balance = habbo.GetCreditBalance();
-        }
-
-        public MCreditBalance SetCreditBalance(int balance)
-        {
-            _balance = balance;
-            return this;
+            Balance = habbo.GetCreditBalance();
         }
 
         public override OutgoingMessage Send(IMessageable target)
@@ -34,7 +24,7 @@ namespace IHI.Server.Networking.Messages
             if (InternalOutgoingMessage.ID == 0)
             {
                 InternalOutgoingMessage.Initialize(6)
-                    .AppendString(_balance.ToString());
+                    .AppendString(Balance.ToString());
             }
 
             target.SendMessage(InternalOutgoingMessage);
