@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ProjectGuid>{FFE34A8A-8403-4AAB-9F67-D1EF59965DD5}</ProjectGuid>
   </PropertyGroup>
-  <Import Project="IHIPlugin.targets" />
+  <Import Project="IHIPacketPlugin.targets" />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
